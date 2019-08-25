@@ -13,19 +13,38 @@
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
-void opcontrol() {
-	pros::Controller master(pros::E_CONTROLLER_MASTER);
-	pros::Motor left_mtr(1);
-	pros::Motor right_mtr(2);
-	while (true) {
-		pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
-		                 (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
-		                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
-		int left = master.get_analog(ANALOG_LEFT_Y);
-		int right = master.get_analog(ANALOG_RIGHT_Y);
+ #define L_DR 11
+ #define R_DR 12
+ #define BELT 13
+ #define L_ROLL 14
+ #define R_ROLL 15
+ #define L_DROP 16
+ #define R_DROP 17
+ #define PUSH 18
 
-		left_mtr = left;
-		right_mtr = right;
-		pros::delay(20);
-	}
-}
+ void opcontrol() {
+ 	pros::Motor dr_l (L_DR);
+   pros::Motor dr_r (R_DR, true); //REVERSED
+   pros::Controller master (CONTROLLER_MASTER);
+
+ 	while (true) {
+
+ 		dr_l.move(master.get_analog(ANALOG_LEFT_Y));
+ 		dr_r.move(master.get_analog(ANALOG_LEFT_Y));
+
+ 		if(master.get_digital(DIGITAL_R1)){
+ 			dr_l.move_velocity(100);
+ 			dr_r.move_velocity(-100);
+ 		} else {
+ 			dr_l.move_velocity(0);
+ 			dr_l.move_velocity(0);
+ 		}
+ 		if(master.get_digital(DIGITAL_L2)){
+ 			dr_l.move_velocity(-100);
+ 			dr_r.move_velocity(100);
+ 		} else{
+ 			dr_l.move_velocity(0);
+ 			dr_r.move_velocity(0);
+ 		}
+ 	}
+ }
