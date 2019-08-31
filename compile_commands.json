@@ -25,11 +25,39 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/opcontrol.cpp.o",
-            "src/opcontrol.cpp"
+            "/var/folders/v9/rc50_by17ts_n84rsf1pbm6w0000gn/T/tmp9qcvbi_5/initialize.cpp.o",
+            "src/initialize.cpp"
         ],
         "directory": "/Users/rahul/Documents/GitHub/2019-2020-vex-tower-takeover-pros",
-        "file": "src/opcontrol.cpp"
+        "file": "src/initialize.cpp"
+    },
+    {
+        "arguments": [
+            "clang++",
+            "-c",
+            "-target",
+            "armv7ar-none-none-eabi",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/include",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/include-fixed",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include",
+            "-iquote./include",
+            "-iquote./include/./",
+            "-mcpu=cortex-a9",
+            "-mfpu=neon-fp16",
+            "-mfloat-abi=softfp",
+            "-D_POSIX_THREADS",
+            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
+            "-Os",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-fdiagnostics-color",
+            "--std=gnu11",
+            "-o",
+            "/var/folders/v9/rc50_by17ts_n84rsf1pbm6w0000gn/T/tmp9qcvbi_5/stub.c.o",
+            "src/stub.c"
+        ],
+        "directory": "/Users/rahul/Documents/GitHub/2019-2020-vex-tower-takeover-pros",
+        "file": "src/stub.c"
     },
     {
         "arguments": [
@@ -89,10 +117,10 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/initialize.cpp.o",
-            "src/initialize.cpp"
+            "bin/opcontrol.cpp.o",
+            "src/opcontrol.cpp"
         ],
         "directory": "/Users/rahul/Documents/GitHub/2019-2020-vex-tower-takeover-pros",
-        "file": "src/initialize.cpp"
+        "file": "src/opcontrol.cpp"
     }
 ]
