@@ -36,21 +36,21 @@
 
  	while (true) {
     //basic drive
- 		dr_l.move(master.get_analog(ANALOG_LEFT_Y));
- 		dr_r.move(master.get_analog(ANALOG_LEFT_Y));
+    dr_l = master.get_analog(ANALOG_LEFT_Y);
+    dr_r = master.get_analog(ANALOG_LEFT_Y);
 
     //no matter which way the joystick is pulled/pushed, the belt will always pull up the ramp.
     belt.move(abs(master.get_analog(ANALOG_RIGHT_Y)));
 
     //point turn algo
  		if(master.get_digital(DIGITAL_R1)){
- 			dr_l.move_velocity(200);
+ 			dr_l = (200);
  			dr_r.move_velocity(-200);
  		} else if (master.get_digital(DIGITAL_L1)){
-      dr_l.move_velocity(-200);
+      dr_l = (-200);
  			dr_r.move_velocity(200);
     } else {
- 			dr_l.move_velocity(0);
+ 			dr_l = (0);
  			dr_l.move_velocity(0);
  		}
 
@@ -86,5 +86,7 @@
       drop_l.move_velocity(0);
       drop_r.move_velocity(0);
     }
+
+    pros::delay(20);
   }
 }
