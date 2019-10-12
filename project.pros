@@ -1,7 +1,7 @@
 {
     "py/object": "pros.conductor.project.Project",
     "py/state": {
-        "project_name": "2019-2020-vex-tower-takeover-pros",
+        "project_name": "towert",
         "target": "v5",
         "templates": {
             "kernel": {
