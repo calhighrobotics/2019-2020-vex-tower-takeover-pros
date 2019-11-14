@@ -15,6 +15,9 @@
 #ifndef _PROS_MAIN_H_
 #define _PROS_MAIN_H_
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 /**
  * If defined, some commonly used enums will have preprocessor macros which give
  * a shorter, more convenient naming pattern. If this isn't desired, simply
