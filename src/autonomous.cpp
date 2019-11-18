@@ -1,5 +1,5 @@
-#include "main.h"
-#include "motors.h"
+#include "main.hpp"
+#include "motors.hpp"
 #include "okapi/api.hpp"
 
 using namespace okapi;
@@ -21,16 +21,16 @@ auto roller_r = AsyncControllerFactory::posPID(R_ROLL, rollkP, rollkI, rollkD);
 void autonomous() {
   //Algorithm :
   //move forward 42.9_in
-  // dt.moveDistanceAsync(42.9_in);
-  // roller_l.setTarget(300);
-  // roller_r.setTarget(300);
-  // dt.waitUntilSettled();
-  // //turn left 90º
-  // dt.turnAngle(90_deg);
-  // //move forward 19.4_in
-  // dt.moveDistance(19.4_in);
-  // //turn left 90º
-  // dt.turnAngle(90_deg);
-  // //move forward 30.7_in
-  // dt.moveDistance(30.7_in);
+  dt.moveDistanceAsync(42.9_in);
+  roller_l.setTarget(300);
+  roller_r.setTarget(300);
+  dt.waitUntilSettled();
+  //turn left 90º
+  dt.turnAngle(90_deg);
+  //move forward 19.4_in
+  dt.moveDistance(19.4_in);
+  //turn left 90º
+  dt.turnAngle(90_deg);
+  //move forward 30.7_in
+  dt.moveDistance(30.7_in);
 }
