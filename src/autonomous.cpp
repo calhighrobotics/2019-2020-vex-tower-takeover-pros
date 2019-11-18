@@ -21,7 +21,7 @@ auto roller_r = AsyncControllerFactory::posPID(R_ROLL, rollkP, rollkI, rollkD);
 void autonomous() {
   //Algorithm :
   //move forward 42.9_in
-  // dt.moveDistanceAsync(42.9_cm);
+  // dt.moveDistanceAsync(42.9_in);
   // roller_l.setTarget(300);
   // roller_r.setTarget(300);
   // dt.waitUntilSettled();

@@ -1,5 +1,5 @@
-#include "main.h"
-#include "motors.h"
+#include "main.hpp"
+#include "motors.hpp"
 
 static void on_center_button() {
   static bool pressed = false;

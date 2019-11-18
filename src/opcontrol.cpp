@@ -1,5 +1,5 @@
-#include "main.h"
-#include "motors.h"
+#include "main.hpp"
+#include "motors.hpp"
 #include <tr1/math.h>
 
 void opcontrol() {
@@ -34,16 +34,22 @@ void opcontrol() {
     }
 
     //rollers
-    if(master.get_digital(DIGITAL_A)){
-      roll_r.move(127);
-      roll_l.move(127);
-    } else if(master.get_digital(DIGITAL_B)){
-      roll_r.move(-127);
-      roll_l.move(-127);
+    if(master.get_digital(DIGITAL_A)){      // for some reason it only works when the
+      right_roll.move(127 * 5);             //left and right are separated in different if statements
+    } else if (master.get_digital(DIGITAL_B)){
+      right_roll.move(-127 * 5);
     } else {
-      roll_l.move_velocity(0);
-      roll_r.move_velocity(0);
+      right_roll.move(0);
     }
+
+    if(master.get_digital(DIGITAL_A)){
+      left_roll.move(127 * 5);
+    } else if(master.get_digital(DIGITAL_B)){
+      left_roll.move(-127 * 5);
+    } else {
+      left_roll.move(0);
+    }
+
     pros::delay(20);
   }
 }
