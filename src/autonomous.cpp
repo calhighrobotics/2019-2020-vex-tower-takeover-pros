@@ -14,16 +14,10 @@ auto dt = ChassisControllerFactory::create(
   {4_in, 15.9375_in}
 );
 
-auto roller_l = AsyncControllerFactory::posPID(L_ROLL, rollkP, rollkI, rollkD);
-auto roller_r = AsyncControllerFactory::posPID(R_ROLL, rollkP, rollkI, rollkD);
-
-
 void autonomous() {
   //Algorithm :
   //move forward 42.9_in
   dt.moveDistanceAsync(42.9_in);
-  roller_l.setTarget(300);
-  roller_r.setTarget(300);
   dt.waitUntilSettled();
   //turn left 90º
   dt.turnAngle(90_deg);

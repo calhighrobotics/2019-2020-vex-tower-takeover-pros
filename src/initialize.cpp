@@ -12,10 +12,6 @@ static void on_center_button() {
 }
 
 void initialize() {
-  push.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
-  arm_l.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
-  arm_r.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
-
   pros::lcd::initialize();
   pros::lcd::set_text(1, "Hello PROS User!");
 
