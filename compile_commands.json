@@ -209,11 +209,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/motors.cpp.o",
-            "src/motors.cpp"
+            "bin/opcontrol.cpp.o",
+            "src/opcontrol.cpp"
         ],
         "directory": "/Users/rahul/Documents/GitHub/2019-2020-vex-tower-takeover-pros",
-        "file": "src/motors.cpp"
+        "file": "src/opcontrol.cpp"
     },
     {
         "arguments": [
@@ -241,11 +241,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/opcontrol.cpp.o",
-            "src/opcontrol.cpp"
+            "bin/motors.cpp.o",
+            "src/motors.cpp"
         ],
         "directory": "/Users/rahul/Documents/GitHub/2019-2020-vex-tower-takeover-pros",
-        "file": "src/opcontrol.cpp"
+        "file": "src/motors.cpp"
     },
     {
         "arguments": [
