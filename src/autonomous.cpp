@@ -4,19 +4,6 @@
 
 using namespace okapi;
 
-auto dt = ChassisControllerFactory::create(
-  L_DR, R_DR,
-  AbstractMotor::gearset::green,
-  {4_in, 15.9375_in}
-);
-
-const double rollkP = 0.001;
-const double rollkI = 0.0001;
-const double rollkD = 0.0001;
-
-auto left_arm = AsyncControllerFactory::posIntegrated(L_ARM);
-auto right_arm = AsyncControllerFactory::posIntegrated(R_ARM);
-
 void autonomous() {
   // arm_l.move(127);
   // arm_r.move(127);
@@ -25,6 +12,21 @@ void autonomous() {
   // //stop motors
   // arm_l.move(0);
   // arm_r.move(0);
+
+
+  //local declaration of drive train
+  auto dt = ChassisControllerFactory::create(
+    L_DR, R_DR,
+    AbstractMotor::gearset::green,
+    {4_in, 15.9375_in}
+  );
+
+  const double rollkP = 0.001;
+  const double rollkI = 0.0001;
+  const double rollkD = 0.0001;
+
+  auto left_arm = AsyncControllerFactory::posIntegrated(L_ARM);
+  auto right_arm = AsyncControllerFactory::posIntegrated(R_ARM);
 
   left_arm.setTarget(300);
   right_arm.setTarget(300);
