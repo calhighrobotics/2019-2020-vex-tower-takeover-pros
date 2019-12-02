@@ -1,5 +1,6 @@
 #include "main.hpp"
 #include "motors.hpp"
+#include "sensors.hpp"
 #include "okapi/api.hpp"
 
 using namespace okapi;
@@ -12,30 +13,30 @@ void autonomous() {
     {4_in, 15.9375_in}
   );
 
-  const double rollkP = 0.001;
-  const double rollkI = 0.0001;
-  const double rollkD = 0.0001;
-
-  auto left_arm = AsyncControllerFactory::posIntegrated(L_ARM);
-  auto right_arm = AsyncControllerFactory::posIntegrated(R_ARM);
-
-  left_arm.setTarget(300);
-  right_arm.setTarget(300);
-  dt.moveDistanceAsync(42.9_in);
+  //get ready for driver control
+  arm_l.move(127);
+  arm_r.move(127);
+  //wait 1 second
+  pros::delay(1000);
+  //stop motors
+  arm_l.move(0);
+  arm_r.move(0);
+  //moving 50_in
+  dt.moveDistanceAsync(50_in);
   roller_left.move(127);
   roller_right.move(127);
   dt.waitUntilSettled();
-  //turn left 90º
-  dt.turnAngleAsync(90_deg);
+  //turn around
+  dt.turnAngleAsync(180_deg);
   dt.waitUntilSettled();
   roller_left.move(0);
   roller_right.move(0);
-  //move forward 19.4_in
-  dt.moveDistance(19.4_in);
+  //move forward 29.5_in
+  dt.moveDistance(29.5_in);
   dt.waitUntilSettled();
   //turn left 90º
-  dt.turnAngle(90_deg);
+  dt.turnAngle(45_deg);
   dt.waitUntilSettled();
-  //move forward 30.7_in
-  dt.moveDistance(30.7_in);
+  //move forward 19_in
+  dt.moveDistance(19_in);
 }
