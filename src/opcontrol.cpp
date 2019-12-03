@@ -7,10 +7,6 @@ void opcontrol() {
 
   while (true) {
 
-    roller_right.move(127);
-    pros::delay(10000);
-    roller_right.move(0);
-
     //driving
     dr_l.move(master.get_analog(ANALOG_LEFT_Y) * 5);
     dr_r.move(master.get_analog(ANALOG_LEFT_Y) * 5);
@@ -39,8 +35,8 @@ void opcontrol() {
 
     //rollers
     if(master.get_digital(DIGITAL_A)){// spin in
-      roller_right.move(127);
       roller_left.move(127);
+      roller_right.move(127);
     } else if(master.get_digital(DIGITAL_B)){ // spin out
       roller_left.move((3 * -127)/4);
       roller_right.move((3 * -127)/4);
