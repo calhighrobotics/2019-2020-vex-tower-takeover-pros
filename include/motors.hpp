@@ -18,6 +18,4 @@ extern pros::Motor roller_right;
 extern pros::Motor arm_l;
 extern pros::Motor arm_r;
 
-#define MOTOR_MAX_SPEED 100
-
 #endif // MOTORS_HPP

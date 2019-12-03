@@ -7,6 +7,10 @@ void opcontrol() {
 
   while (true) {
 
+    roller_right.move(127);
+    pros::delay(10000);
+    roller_right.move(0);
+
     //driving
     dr_l.move(master.get_analog(ANALOG_LEFT_Y) * 5);
     dr_r.move(master.get_analog(ANALOG_LEFT_Y) * 5);
