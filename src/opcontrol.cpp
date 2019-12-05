@@ -25,6 +25,7 @@ void opcontrol() {
     }
 
     //pushing mechanism
+    // 1-L, 2-R, 2 diagonal L-R, 4 diagonal R-L, 1 R
     if (master.get_digital(DIGITAL_R2)) {
       push.move_velocity(100);
     } else if (master.get_digital(DIGITAL_L2)) {

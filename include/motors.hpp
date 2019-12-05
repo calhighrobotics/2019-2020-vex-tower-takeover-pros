@@ -3,7 +3,7 @@
 #include "main.hpp"
 
 #define PUSH 18
-#define L_DR -13
+#define L_DR 13
 #define R_DR 20
 #define L_ROLL 3
 #define R_ROLL 8
