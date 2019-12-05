@@ -1,5 +1,6 @@
 #include "main.hpp"
 #include "motors.hpp"
+#include "sensors.hpp"
 #include <tr1/math.h>
 
 void opcontrol() {

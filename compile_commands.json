@@ -129,6 +129,9 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include/c++/8.3.1",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include/c++/8.3.1/arm-none-eabi",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include/c++/8.3.1/backward",
             "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/include",
             "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/include-fixed",
             "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include",
@@ -140,16 +143,49 @@
             "-D_POSIX_THREADS",
             "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
             "-Os",
+            "-funwind-tables",
             "-ffunction-sections",
             "-fdata-sections",
             "-fdiagnostics-color",
-            "--std=gnu11",
+            "--std=gnu++17",
             "-o",
-            "bin/stub.c.o",
-            "src/stub.c"
+            "bin/autonomous.cpp.o",
+            "src/autonomous.cpp"
         ],
         "directory": "/Users/rahul/Documents/GitHub/2019-2020-vex-tower-takeover-pros",
-        "file": "src/stub.c"
+        "file": "src/autonomous.cpp"
+    },
+    {
+        "arguments": [
+            "clang++",
+            "-c",
+            "-target",
+            "armv7ar-none-none-eabi",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include/c++/8.3.1",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include/c++/8.3.1/arm-none-eabi",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include/c++/8.3.1/backward",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/include",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/include-fixed",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include",
+            "-iquote./include",
+            "-iquote./include/./",
+            "-mcpu=cortex-a9",
+            "-mfpu=neon-fp16",
+            "-mfloat-abi=softfp",
+            "-D_POSIX_THREADS",
+            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
+            "-Os",
+            "-funwind-tables",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-fdiagnostics-color",
+            "--std=gnu++17",
+            "-o",
+            "bin/motors.cpp.o",
+            "src/motors.cpp"
+        ],
+        "directory": "/Users/rahul/Documents/GitHub/2019-2020-vex-tower-takeover-pros",
+        "file": "src/motors.cpp"
     },
     {
         "arguments": [
@@ -189,9 +225,6 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include/c++/8.3.1",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include/c++/8.3.1/arm-none-eabi",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include/c++/8.3.1/backward",
             "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/include",
             "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/include-fixed",
             "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include",
@@ -203,17 +236,16 @@
             "-D_POSIX_THREADS",
             "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
             "-Os",
-            "-funwind-tables",
             "-ffunction-sections",
             "-fdata-sections",
             "-fdiagnostics-color",
-            "--std=gnu++17",
+            "--std=gnu11",
             "-o",
-            "bin/motors.cpp.o",
-            "src/motors.cpp"
+            "bin/stub.c.o",
+            "src/stub.c"
         ],
         "directory": "/Users/rahul/Documents/GitHub/2019-2020-vex-tower-takeover-pros",
-        "file": "src/motors.cpp"
+        "file": "src/stub.c"
     },
     {
         "arguments": [
@@ -278,37 +310,5 @@
         ],
         "directory": "/Users/rahul/Documents/GitHub/2019-2020-vex-tower-takeover-pros",
         "file": "src/opcontrol.cpp"
-    },
-    {
-        "arguments": [
-            "clang++",
-            "-c",
-            "-target",
-            "armv7ar-none-none-eabi",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include/c++/8.3.1",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include/c++/8.3.1/arm-none-eabi",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include/c++/8.3.1/backward",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/include",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/include-fixed",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2019-q3-update/bin/../lib/gcc/arm-none-eabi/8.3.1/../../../../arm-none-eabi/include",
-            "-iquote./include",
-            "-iquote./include/./",
-            "-mcpu=cortex-a9",
-            "-mfpu=neon-fp16",
-            "-mfloat-abi=softfp",
-            "-D_POSIX_THREADS",
-            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
-            "-Os",
-            "-funwind-tables",
-            "-ffunction-sections",
-            "-fdata-sections",
-            "-fdiagnostics-color",
-            "--std=gnu++17",
-            "-o",
-            "bin/autonomous.cpp.o",
-            "src/autonomous.cpp"
-        ],
-        "directory": "/Users/rahul/Documents/GitHub/2019-2020-vex-tower-takeover-pros",
-        "file": "src/autonomous.cpp"
     }
 ]
