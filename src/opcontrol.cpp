@@ -12,7 +12,7 @@ void opcontrol() {
     dr_l.move(master.get_analog(ANALOG_LEFT_Y) * 5);
     dr_r.move(master.get_analog(ANALOG_LEFT_Y) * 5);
 
-    //armsn
+    //arms
     arm_l.move((master.get_analog(ANALOG_RIGHT_Y) * 8)/10);
     arm_r.move((master.get_analog(ANALOG_RIGHT_Y) * 8)/10);
 
@@ -26,7 +26,6 @@ void opcontrol() {
     }
 
     //pushing mechanism
-    // 1-L, 2-R, 2 diagonal L-R, 4 diagonal R-L, 1 R
     if (master.get_digital(DIGITAL_R2)) {
       push.move_velocity(100);
     } else if (master.get_digital(DIGITAL_L2)) {
