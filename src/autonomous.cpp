@@ -1,5 +1,6 @@
 #include "main.hpp"
 #include "motors.hpp"
+#include "sensors.hpp"
 
 void autonomous() {
   dr_l.move(127);

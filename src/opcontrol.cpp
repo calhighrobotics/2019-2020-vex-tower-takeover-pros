@@ -1,51 +1,62 @@
+
+
 #include "main.hpp"
 #include "motors.hpp"
-#include <tr1/math.h>
+#include "okapi/api.hpp"
+#include "sensors.hpp"
 
-void opcontrol() {
-  pros::Controller master(CONTROLLER_MASTER);
+using namespace okapi;
 
-  while (true) {
-  
-    //driving
-    dr_l.move(master.get_analog(ANALOG_LEFT_Y) * 5);
-    dr_r.move(master.get_analog(ANALOG_LEFT_Y) * 5);
+void autonomous() {
+  //local declaration of drive train
+  auto dt = ChassisControllerFactory::create(
+    -L_DR, R_DR, //left motor is reversed
+    AbstractMotor::gearset::green,
+    {4_in, 15.9375_in}
+  );
 
-    //armsn
-    arm_l.move(master.get_analog(ANALOG_RIGHT_Y));
-    arm_r.move(master.get_analog(ANALOG_RIGHT_Y));
+  dt.setMaxVelocity(45);
 
-    //point turn algo
-    if (master.get_digital(DIGITAL_R1)) {
-      dr_l.move_velocity(200);
-      dr_r.move_velocity(-200);
-    } else if (master.get_digital(DIGITAL_L1)) {
-      dr_l.move_velocity(-200);
-      dr_r.move_velocity(200);
+  pros::delay(25); // allow robot to settle
+  //bring out arms
+    while(right_lim.get_value() != true){
+      arm_l.move(127);
+      arm_r.move(127);
     }
-
-    //pushing mechanism
-    if (master.get_digital(DIGITAL_R2)) {
-      push.move_velocity(150);
-    } else if (master.get_digital(DIGITAL_L2)) {
-      push.move_velocity(-150);
-    } else {
-      push.move_velocity(0);
-    }
-
-    //rollers
-    if(master.get_digital(DIGITAL_A)){
-      roller_right.move(127);
-      roller_left.move(127);
-      printf("%f\n", roller_left.get_position());
-    } else if(master.get_digital(DIGITAL_B)){
-      roller_left.move(-127);
-      roller_right.move(-127);
-    } else {
-      roller_left.move_velocity(0);
-      roller_right.move_velocity(0);
-    }
-
-    pros::delay(20);
-  }
+  //run rollers
+    roller_left.move_velocity(600);
+    roller_right.move_velocity(600);
+  //moving
+    dt.moveDistanceAsync(46_in);
+    dt.waitUntilSettled();
+    pros::delay(400);
+  //stop rollers
+    roller_left.move(0);
+    roller_right.move(0);
+  //move back and speed up
+    dt.setMaxVelocity(180);
+    dt.moveDistanceAsync(-20_in);
+    dt.waitUntilSettled();
+  //turn
+    dt.turnAngleAsync(-103_deg);
+    dt.waitUntilSettled();
+  //move forward to goal
+    dt.moveDistance(22_in);
+    dt.waitUntilSettled();
+  //push up
+    push.move(127);
+    pros::delay(2725);
+    push.move(0);
+  //roll out and pull arms back
+    roller_left.move(-127);
+    roller_right.move(127);
+    arm_r.move(-127);
+    arm_l.move(-127);
+    pros::delay(800);
+    roller_left.move(0);
+    roller_right.move(0);
+    arm_r.move(0);
+    arm_l.move(0);
+  //move back
+    dt.moveDistance(-3_in);
 }
