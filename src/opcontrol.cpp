@@ -36,8 +36,8 @@ void opcontrol() {
 
     //rollers
     if(master.get_digital(DIGITAL_A)){// spin in
-      roller_left.move(127);
-      roller_right.move(127);
+      roller_left.move_velocity(200);
+      roller_right.move_velocity(200);
     } else if(master.get_digital(DIGITAL_B)){ // spin out
       roller_left.move((3 * -127)/4);
       roller_right.move((3 * -127)/4);
