@@ -1,27 +1,49 @@
-
-
 #include "main.hpp"
 #include "motors.hpp"
-#include "okapi/api.hpp"
 #include "sensors.hpp"
+#include <tr1/math.h>
 
-using namespace okapi;
+void opcontrol() {
+  pros::Controller master(CONTROLLER_MASTER);
 
-void autonomous() {
-  //local declaration of drive train
-  auto dt = ChassisControllerFactory::create(
-    -L_DR, R_DR, //left motor is reversed
-    AbstractMotor::gearset::green,
-    {4_in, 15.9375_in}
-  );
+  while (true) {
 
-  dt.setMaxVelocity(45);
+    //driving
+    dr_l.move(master.get_analog(ANALOG_LEFT_Y) * 5);
+    dr_r.move(master.get_analog(ANALOG_LEFT_Y) * 5);
 
-  pros::delay(25); // allow robot to settle
-  //bring out arms
-    while(right_lim.get_value() != true){
-      arm_l.move(127);
-      arm_r.move(127);
+    //arms
+    arm_l.move((master.get_analog(ANALOG_RIGHT_Y) * 8)/10);
+    arm_r.move((master.get_analog(ANALOG_RIGHT_Y) * 8)/10);
+
+    //point turn algo
+    if (master.get_digital(DIGITAL_R1)) {
+      dr_l.move_velocity(200);
+      dr_r.move_velocity(-200);
+    } else if (master.get_digital(DIGITAL_L1)) {
+      dr_l.move_velocity(-200);
+      dr_r.move_velocity(200);
+    }
+
+    //pushing mechanism
+    if (master.get_digital(DIGITAL_R2)) {
+      push.move_velocity(100);
+    } else if (master.get_digital(DIGITAL_L2)) {
+      push.move_velocity(-100);
+    } else {
+      push.move_velocity(0);
+    }
+
+    //rollers
+    if(master.get_digital(DIGITAL_A)){// spin in
+      roller_left.move_velocity(200);
+      roller_right.move_velocity(200);
+    } else if(master.get_digital(DIGITAL_B)){ // spin out
+      roller_left.move((3 * -127)/4);
+      roller_right.move((3 * -127)/4);
+    } else { // STOP! in the name of the law!
+      roller_right.move(0);
+      roller_left.move(0);
     }
   //run rollers
     roller_left.move_velocity(600);
