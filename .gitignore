@@ -1,6 +1,16 @@
+# Compiled Object files
+*.o
+*.obj
+
+# Executables
+*.bin
+*.elf
+
+# PROS
 bin/
-
-.DS_Store
-.vscode
-
+.vscode/
 compile_commands.json
+temp.log
+temp.errors
+*.ini
+.d/
