@@ -13,11 +13,11 @@ void opcontrol() {
       dr_l.move(master.get_analog(ANALOG_LEFT_Y) * 5);
       dr_r.move(master.get_analog(ANALOG_LEFT_Y) * 5);
     } else if(master.get_digital(DIGITAL_L1)){
-      dr_r.move_velocity(-600);
-      dr_l.move_velocity(600);
-    } else if (master.get_digital(DIGITAL_R1)){
-      dr_l.move_velocity(-600);
       dr_r.move_velocity(600);
+      dr_l.move_velocity(-600);
+    } else if (master.get_digital(DIGITAL_R1)){
+      dr_l.move_velocity(600);
+      dr_r.move_velocity(-600);
     } else {
       dr_r.move(0);
       dr_l.move(0);
