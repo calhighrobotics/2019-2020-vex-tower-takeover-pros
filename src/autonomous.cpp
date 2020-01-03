@@ -30,24 +30,25 @@ ADIButton right_lim(RIGHT_LIM);
 // allow preload to enter
   pros::delay(200);
 //moving
-dt.setMaxVelocity(35);
+// dt.setMaxVelocity(35);
+dt.setMaxVelocity(45);
   dt.moveDistanceAsync(14_in);
   dt.waitUntilSettled();
-dt.setMaxVelocity(45);
+// dt.setMaxVelocity(45);
   dt.moveDistanceAsync(33_in);
   dt.waitUntilSettled();
-  pros::delay(200);
+  // pros::delay(200);
 //move back and speed up
   dt.setMaxVelocity(170);
   dt.moveDistanceAsync(-24_in);
   dt.waitUntilSettled();
-  pros::delay(250);
+  pros::delay(150);
 //turn
   dt.turnAngleAsync(-110_deg);
   dt.waitUntilSettled();
 //move forward to goal
 dt.setMaxVelocity(180);
-  dt.moveDistanceAsync(18_in);
+  dt.moveDistanceAsync(20_in);
   //stop rollers
     roller_left.move(0);
     roller_right.move(0);
