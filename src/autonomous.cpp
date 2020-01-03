@@ -58,10 +58,10 @@ dt.setMaxVelocity(180);
   pros::delay(2000);
   push.move(0);
 //roll out and pull arms back
-  roller_left.move(-127);
-  roller_right.move(127);
-  arm_l.move(-127);
-  arm_r.move(-127);
+  roller_left.move_velocity(-200);
+  roller_right.move_velocity(200);
+  arm_l.move_velocity(-127);
+  arm_r.move_velocity(-127);
   pros::delay(800);
   roller_left.move(0);
   roller_right.move(0);
