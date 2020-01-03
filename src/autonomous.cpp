@@ -38,13 +38,15 @@ dt.setMaxVelocity(45);
   dt.waitUntilSettled();
   pros::delay(200);
 //move back and speed up
-  dt.setMaxVelocity(190);
+  dt.setMaxVelocity(170);
   dt.moveDistanceAsync(-24_in);
   dt.waitUntilSettled();
+  pros::delay(250);
 //turn
-  dt.turnAngleAsync(-105_deg);
+  dt.turnAngleAsync(-110_deg);
   dt.waitUntilSettled();
 //move forward to goal
+dt.setMaxVelocity(180);
   dt.moveDistanceAsync(18_in);
   //stop rollers
     roller_left.move(0);
