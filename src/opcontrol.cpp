@@ -29,9 +29,9 @@ void opcontrol() {
 
     //pushing mechanism
     if (master.get_digital(DIGITAL_R2)) {
-      push.move(127);
+      push.move(100);
     } else if (master.get_digital(DIGITAL_L2)) {
-      push.move(-127);
+      push.move(-100);
     } else {
       push.move_velocity(0);
     }
