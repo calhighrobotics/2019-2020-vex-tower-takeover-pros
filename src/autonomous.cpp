@@ -42,7 +42,7 @@ dt.setMaxVelocity(45);
   dt.moveDistanceAsync(-24_in);
   dt.waitUntilSettled();
 //turn
-  dt.turnAngleAsync(-110_deg);
+  dt.turnAngleAsync(-105_deg);
   dt.waitUntilSettled();
 //move forward to goal
   dt.moveDistanceAsync(18_in);
