@@ -9,7 +9,7 @@ void opcontrol() {
   while (true) {
 
     //driving
-    if(abs(master.get_analog(ANALOG_LEFT_Y)) > 50){
+    if(abs(master.get_analog(ANALOG_LEFT_Y)) > 10){
       dr_l.move(master.get_analog(ANALOG_LEFT_Y) * 5);
       dr_r.move(master.get_analog(ANALOG_LEFT_Y) * 5);
     } else if(master.get_digital(DIGITAL_L1)){

@@ -18,51 +18,52 @@ auto dt = ChassisControllerFactory::create(
 ADIButton left_lim(LEFT_LIM);
 ADIButton right_lim(RIGHT_LIM);
 
-dt.setMaxVelocity(45);
-
-  pros::delay(25); // allow robot to settle after jump
-  //bring out arms
+//bring out arms
   arm_l.move(127);
   arm_r.move(127);
   pros::delay(800);
   arm_r.move(0);
   arm_l.move(0);
-  //run rollers
-  roller_left.move_velocity(200);
-  roller_right.move_velocity(200);
-  // allow preload to enter
-  pros::delay(450);
+//run rollers
+  roller_left.move(600);
+  roller_right.move(600);
+// allow preload to enter
+  pros::delay(200);
 //moving
-  dt.moveDistanceAsync(47_in);
+dt.setMaxVelocity(35);
+  dt.moveDistanceAsync(14_in);
   dt.waitUntilSettled();
-  pros::delay(400);
-//stop rollers
-  roller_left.move(0);
-  roller_right.move(0);
+dt.setMaxVelocity(45);
+  dt.moveDistanceAsync(33_in);
+  dt.waitUntilSettled();
+  pros::delay(200);
 //move back and speed up
-  dt.setMaxVelocity(180);
-  dt.moveDistanceAsync(-22_in);
+  dt.setMaxVelocity(190);
+  dt.moveDistanceAsync(-24_in);
   dt.waitUntilSettled();
 //turn
   dt.turnAngleAsync(-110_deg);
   dt.waitUntilSettled();
 //move forward to goal
-  dt.moveDistance(19_in);
+  dt.moveDistanceAsync(18_in);
+  //stop rollers
+    roller_left.move(0);
+    roller_right.move(0);
   dt.waitUntilSettled();
 //push up
-  push.move(127); //went the wrong way!!
-  pros::delay(2725);
+  push.move(90); //went the wrong way!!
+  pros::delay(2000);
   push.move(0);
 //roll out and pull arms back
   roller_left.move(-127);
   roller_right.move(127);
-  arm_r.move(-127);
   arm_l.move(-127);
+  arm_r.move(-127);
   pros::delay(800);
   roller_left.move(0);
   roller_right.move(0);
   arm_r.move(0);
   arm_l.move(0);
 //move back
-  dt.moveDistance(-3_in);
+  dt.moveDistance(-10_in);
 }
