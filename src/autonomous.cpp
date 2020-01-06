@@ -2,9 +2,6 @@
 #include "motors.hpp"
 #include "okapi/api.hpp"
 
-#define LEFT_LIM 'g'
-#define RIGHT_LIM 'h'
-
 using namespace okapi;
 
 void autonomous() { // RED AUTONOMOUS
@@ -14,9 +11,6 @@ auto dt = ChassisControllerFactory::create(
   AbstractMotor::gearset::green,
   {4_in, 15.9375_in}
 );
-
-ADIButton left_lim(LEFT_LIM);
-ADIButton right_lim(RIGHT_LIM);
 
 //bring out arms
   arm_l.move(127);
@@ -32,29 +26,30 @@ dt.setMaxVelocity(45);
   dt.moveDistanceAsync(48_in);
   dt.waitUntilSettled();
 //stop rollers
+  pros::delay(100);
   roller_left.move(0);
   roller_right.move(0);
-  // pros::delay(200);
 //move back and speed up
   dt.setMaxVelocity(170);
-  dt.moveDistanceAsync(-24_in);
+  dt.moveDistanceAsync(-26_in);
   dt.waitUntilSettled();
   pros::delay(150);
 //turn
-  dt.turnAngleAsync(-110_deg);
+  dt.turnAngleAsync(-105_deg);
   dt.waitUntilSettled();
 //move forward to goal
 dt.setMaxVelocity(180);
-  dt.moveDistanceAsync(20_in);
+  dt.moveDistanceAsync(23_in);
   dt.waitUntilSettled();
-//spit out cubes just a little
-  roller_left.move_velocity(-200);
-  roller_right.move_velocity(200);
-  pros::delay(200);
-  roller_left.move_velocity(0);
-  roller_right.move_velocity(0);
+//possibly not needed
+// //spit out cubes just a little
+//   roller_left.move_velocity(-200);
+//   roller_right.move_velocity(200);
+//   pros::delay(200);
+//   roller_left.move_velocity(0);
+//   roller_right.move_velocity(0);
 //push up
-  push.move(90); //went the wrong way!! 
+  push.move(90); //went the wrong way!!
   pros::delay(2000);
   push.move(0);
 //roll out and pull arms back

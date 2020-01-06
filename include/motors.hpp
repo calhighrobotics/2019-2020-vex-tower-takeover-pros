@@ -7,8 +7,8 @@
 #define R_DR 20
 #define L_ROLL 3
 #define R_ROLL 8
-#define L_ARM 11
-#define R_ARM -19
+#define L_ARM 12
+#define R_ARM 19
 
 extern pros::Motor push;
 extern pros::Motor dr_l;
