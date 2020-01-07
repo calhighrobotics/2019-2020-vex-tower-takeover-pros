@@ -35,7 +35,7 @@ dt.setMaxVelocity(45);
   dt.waitUntilSettled();
   pros::delay(150);
 //turn
-  dt.turnAngleAsync(-105_deg);
+  dt.turnAngleAsync(-107_deg);
   dt.waitUntilSettled();
 //move forward to goal
 dt.setMaxVelocity(180);
