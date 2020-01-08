@@ -4,13 +4,13 @@
 
 using namespace okapi;
 
-void autonomous() { // RED AUTONOMOUS
+void autonomous() { // BLUE AUTONOMOUS
 //local declaration of drive train
-auto dt = ChassisControllerFactory::create(
-  -L_DR, R_DR, //left motor is reversed
-  AbstractMotor::gearset::green,
-  {4_in, 15.9375_in}
-);
+auto drive = ChassisControllerBuilder()
+    .withMotors(L_DR, R_DR)
+    // Green gearset, 4 in wheel diam, 11.5 in wheel track
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 15.9375_in}, imev5GreenTPR})
+    .build();
 
 //bring out arms
   arm_l.move(127);
@@ -22,32 +22,25 @@ auto dt = ChassisControllerFactory::create(
   roller_left.move(600);
   roller_right.move(600);
 //moving
-dt.setMaxVelocity(45);
-  dt.moveDistanceAsync(48_in);
-  dt.waitUntilSettled();
+drive->setMaxVelocity(45);
+  drive->moveDistanceAsync(48_in);
+  drive->waitUntilSettled();
 //stop rollers
   pros::delay(100);
   roller_left.move(0);
   roller_right.move(0);
 //move back and speed up
-  dt.setMaxVelocity(170);
-  dt.moveDistanceAsync(-26_in);
-  dt.waitUntilSettled();
+  drive->setMaxVelocity(170);
+  drive->moveDistanceAsync(-26_in);
+  drive->waitUntilSettled();
   pros::delay(150);
 //turn
-  dt.turnAngleAsync(-107_deg);
-  dt.waitUntilSettled();
+  drive->turnAngleAsync(-107_deg);
+  drive->waitUntilSettled();
 //move forward to goal
-dt.setMaxVelocity(180);
-  dt.moveDistanceAsync(23_in);
-  dt.waitUntilSettled();
-//possibly not needed
-// //spit out cubes just a little
-//   roller_left.move_velocity(-200);
-//   roller_right.move_velocity(200);
-//   pros::delay(200);
-//   roller_left.move_velocity(0);
-//   roller_right.move_velocity(0);
+drive->setMaxVelocity(180);
+  drive->moveDistanceAsync(23_in);
+  drive->waitUntilSettled();
 //push up
   push.move(90); //went the wrong way!!
   pros::delay(2000);
@@ -63,5 +56,5 @@ dt.setMaxVelocity(180);
   arm_r.move(0);
   arm_l.move(0);
 //move back
-  dt.moveDistance(-10_in);
+  drive->moveDistance(-10_in);
 }
