@@ -4,14 +4,13 @@
 
 using namespace okapi;
 
-void autonomous() { // BLUE AUTONOMOUS
+void autonomous() {
 //local declaration of drive train
 auto drive = ChassisControllerBuilder()
     .withMotors(L_DR, R_DR)
     // Green gearset, 4 in wheel diam, 11.5 in wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 15.9375_in}, imev5GreenTPR})
     .build();
-
 //bring out arms
   arm_l.move(127);
   arm_r.move(127);
@@ -35,7 +34,8 @@ drive->setMaxVelocity(45);
   drive->waitUntilSettled();
   pros::delay(150);
 //turn
-  drive->turnAngleAsync(-107_deg);
+  drive->turnAngleAsync(107_deg); // RED
+  // drive->turnAngleAsync(-107_deg); // BLUE
   drive->waitUntilSettled();
 //move forward to goal
 drive->setMaxVelocity(180);
