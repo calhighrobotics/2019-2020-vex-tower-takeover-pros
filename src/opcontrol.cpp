@@ -1,11 +1,10 @@
 #include "main.hpp"
 #include "motors.hpp"
 #include "sensors.hpp"
-#include <tr1/math.h>
 
-void opcontrol() {
-  pros::Controller master(CONTROLLER_MASTER);
+pros::Controller master(CONTROLLER_MASTER);
 
+void opcontrol(){
   while (true) {
 
     //driving
