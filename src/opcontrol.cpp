@@ -47,5 +47,6 @@ void opcontrol() {
       roller_right.move(0);
       roller_left.move(0);
     }
+    pros::delay(20);
   }
 }
