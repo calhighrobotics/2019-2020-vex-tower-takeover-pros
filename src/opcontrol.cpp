@@ -4,16 +4,22 @@
 
 pros::Controller master(CONTROLLER_MASTER);
 
+bool slower = false;
+
+void toggle(){
+  if(master.get_digital(DIGITAL_UP)){
+      slower = true;
+      master.rumble(" . ");
+  } else if (master.get_digital(DIGITAL_LEFT)){
+      slower = false;
+      master.rumble(" - ");
+  }
+}
+
 void opcontrol(){
-  bool slower = false;
-
   while (true) {
-
-    if(master.get_digital(DIGITAL_RIGHT)){
-      slower = !slower;
-    }
-
     if(slower){
+      toggle();
       //driving
       if(abs(master.get_analog(ANALOG_LEFT_Y)) > 10){
         dr_l.move(master.get_analog(ANALOG_LEFT_Y) * 5 * 0.5);
@@ -34,9 +40,9 @@ void opcontrol(){
       arm_r.move((master.get_analog(ANALOG_RIGHT_Y) * 8)/10 * 0.5);
 
       //pushing mechanism
-      if (master.get_digital(DIGITAL_R2)) {
+      if (master.get_digital(DIGITAL_L2)) {
         push.move(80 * 0.5);
-      } else if (master.get_digital(DIGITAL_L2)) {
+      } else if (master.get_digital(DIGITAL_R2)) {
         push.move(-100 * 0.5);
       } else {
         push.move_velocity(0);
@@ -57,6 +63,7 @@ void opcontrol(){
 // ----------------------------------------------------------------------------------
 
     } else {
+      toggle();
       //driving
       if(abs(master.get_analog(ANALOG_LEFT_Y)) > 10){
         dr_l.move(master.get_analog(ANALOG_LEFT_Y) * 5);
@@ -77,13 +84,13 @@ void opcontrol(){
       arm_r.move((master.get_analog(ANALOG_RIGHT_Y) * 8)/10);
 
       //pushing mechanism
-      if (master.get_digital(DIGITAL_R2)) {
+      if (master.get_digital(DIGITAL_L2)) {
         push.move(80);
-      } else if (master.get_digital(DIGITAL_L2)) {
+      } else if (master.get_digital(DIGITAL_R2)) {
         push.move(-100);
       } else {
         push.move_velocity(0);
-      }
+      }\
 
       //rollers
       if(master.get_digital(DIGITAL_A)){// spin in
