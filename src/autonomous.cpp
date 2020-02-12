@@ -6,6 +6,19 @@
 
 using namespace okapi;
 
+/*
+figure out how to change motor unit to degree + calculate motor rotations to get to the right spot for the arms. that should make the arms go to the right spot every time; call with this position as a param.
+*/
+
+void arms_move(const double position, const int32_t velocity){
+  int goal_position = position + arm_l.get_position();
+  arm_l.move_relative(100, velocity);
+  arm_r.move_relative(100, velocity);
+  while (abs(goal_position - arm_l.get_position()) > 5){
+    pros::delay(2);
+  }
+}
+
 void autonomous(){ //SMALL RED GOAL
 //local declaration of drive train
 auto drive = ChassisControllerBuilder()

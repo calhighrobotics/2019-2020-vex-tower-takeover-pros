@@ -11,6 +11,7 @@
 #define R_ARM 19
 
 #define MAX_MOTOR_VOLTAGE 12000
+#define MAX_MOTOR_POWER 127
 
 extern pros::Motor push;
 extern pros::Motor dr_l;
