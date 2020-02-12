@@ -84,10 +84,10 @@ void opcontrol(){
       arm_r.move((master.get_analog(ANALOG_RIGHT_Y) * 8)/10);
 
       //pushing mechanism
-      if (master.get_digital(DIGITAL_L2)) {
+      if (master.get_digital(DIGITAL_R2)) {
         push.move(80);
-      } else if (master.get_digital(DIGITAL_R2)) {
-        push.move(-100);
+      } else if (master.get_digital(DIGITAL_L2)) {
+        push.move(-127);
       } else {
         push.move_velocity(0);
       }\
