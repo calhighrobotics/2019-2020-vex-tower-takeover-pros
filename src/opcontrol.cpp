@@ -1,39 +1,39 @@
 #include "main.hpp"
 #include "motors.hpp"
 #include "sensors.hpp"
+#include "okapi/api.hpp"
+
+using namespace okapi;
 
 pros::Controller master(CONTROLLER_MASTER);
-
-bool slower = false;
 
 void opcontrol(){
   while (true) {
       //driving
       if(abs(master.get_analog(ANALOG_LEFT_Y)) > 10){
-        dr_l.move(master.get_analog(ANALOG_LEFT_Y) * 5);
-        dr_r.move(master.get_analog(ANALOG_LEFT_Y) * 5);
+        dr_l.move(127);
+        dr_r.move(127);
       } else if(master.get_digital(DIGITAL_L1)){
-        dr_r.move_voltage(MAX_MOTOR_VOLTAGE);
-        dr_l.move_voltage(-MAX_MOTOR_VOLTAGE);
+        dr_r.move(127);
+        dr_l.move(-127);
       } else if (master.get_digital(DIGITAL_R1)){
-        dr_l.move_voltage(MAX_MOTOR_VOLTAGE);
-        dr_r.move_voltage(-MAX_MOTOR_VOLTAGE);
+        dr_l.move(127);
+        dr_r.move(-127);
       } else {
         dr_r.move(0);
         dr_l.move(0);
       }
 
-      //arms
-      arm_l.move((master.get_analog(ANALOG_RIGHT_Y) * 8)/10);
-      arm_r.move((master.get_analog(ANALOG_RIGHT_Y) * 8)/10);
+      push.move(master.get_analog(ANALOG_RIGHT_Y));
 
-      //pushing mechanism
       if (master.get_digital(DIGITAL_R2)) { //down
-        push.move_voltage(MAX_MOTOR_VOLTAGE);
+        arm_l.move(MAX_MOTOR_VOLTAGE);
+        arm_r.move(MAX_MOTOR_VOLTAGE);
       } else if (master.get_digital(DIGITAL_L2)) { //up
-        push.move(-MAX_MOTOR_VOLTAGE);
+        arm_l.move((-MAX_MOTOR_VOLTAGE * 8) / 10);
+        arm_r.move((-MAX_MOTOR_VOLTAGE * 8) / 10);
       } else {
-        push.move_velocity(0);
+        push.move(0);
       }
 
       //rollers
@@ -47,6 +47,11 @@ void opcontrol(){
         roller_right.move(0);
         roller_left.move(0);
       }
+
+      if(master.get_digital(DIGITAL_DOWN)){
+          std::cout << "Motor Position: " << arm_l.get_position();
+      }
+
     }
     pros::delay(20);
   }
