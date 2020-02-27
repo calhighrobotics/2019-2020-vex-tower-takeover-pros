@@ -11,14 +11,14 @@ void opcontrol(){
   while (true) {
       //driving
       if(abs(master.get_analog(ANALOG_LEFT_Y)) > 10){
-        dr_l.move(127);
-        dr_r.move(127);
+        dr_l.move_voltage(MAX_MOTOR_VOLTAGE);
+        dr_r.move_voltage(MAX_MOTOR_VOLTAGE);
       } else if(master.get_digital(DIGITAL_L1)){
-        dr_r.move(127);
-        dr_l.move(-127);
+        dr_r.move_voltage(MAX_MOTOR_VOLTAGE);
+        dr_l.move_voltage(-MAX_MOTOR_VOLTAGE);
       } else if (master.get_digital(DIGITAL_R1)){
-        dr_l.move(127);
-        dr_r.move(-127);
+        dr_l.move_voltage(MAX_MOTOR_VOLTAGE);
+        dr_r.move_voltage(-MAX_MOTOR_VOLTAGE);
       } else {
         dr_r.move(0);
         dr_l.move(0);
@@ -27,11 +27,11 @@ void opcontrol(){
       push.move(master.get_analog(ANALOG_RIGHT_Y));
 
       if (master.get_digital(DIGITAL_R2)) { //down
-        arm_l.move(MAX_MOTOR_VOLTAGE);
-        arm_r.move(MAX_MOTOR_VOLTAGE);
+        arm_l.move_voltage(MAX_MOTOR_VOLTAGE);
+        arm_r.move_voltage(MAX_MOTOR_VOLTAGE);
       } else if (master.get_digital(DIGITAL_L2)) { //up
-        arm_l.move((-MAX_MOTOR_VOLTAGE * 8) / 10);
-        arm_r.move((-MAX_MOTOR_VOLTAGE * 8) / 10);
+        arm_l.move_voltage((-MAX_MOTOR_VOLTAGE * 8) / 10);
+        arm_r.move_voltage((-MAX_MOTOR_VOLTAGE * 8) / 10);
       } else {
         push.move(0);
       }
