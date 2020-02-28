@@ -11,8 +11,8 @@ void opcontrol(){
   while (true) {
       //driving
       if(abs(master.get_analog(ANALOG_LEFT_Y)) > 10){
-        dr_l.move_voltage(MAX_MOTOR_VOLTAGE);
-        dr_r.move_voltage(MAX_MOTOR_VOLTAGE);
+        dr_l.move_voltage(master.get_analog(ANALOG_LEFT_Y));
+        dr_r.move_voltage(master.get_analog(ANALOG_LEFT_Y));
       } else if(master.get_digital(DIGITAL_L1)){
         dr_r.move_voltage(MAX_MOTOR_VOLTAGE);
         dr_l.move_voltage(-MAX_MOTOR_VOLTAGE);
