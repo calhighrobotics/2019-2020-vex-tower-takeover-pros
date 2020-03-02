@@ -27,9 +27,9 @@ auto drive = ChassisControllerBuilder()
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 15.9375_in}, imev5GreenTPR})
     .build();
 //bring out arms
-  arm_l.move(127);
-  arm_r.move(127);
-  pros::delay(1200);
+  arm_l.move(110);
+  arm_r.move(110);
+  pros::delay(1000);
   arm_r.move(0);
   arm_l.move(0);
   pros::delay(200);
@@ -37,8 +37,9 @@ auto drive = ChassisControllerBuilder()
   roller_left.move(127);
   roller_right.move(127);
 //moving
-drive->setMaxVelocity(95);
-  drive->moveDistanceAsync(45_in);
+  pros::delay(170);
+  drive->setMaxVelocity(95);
+  drive->moveDistanceAsync(60_in);
   drive->waitUntilSettled();
 //stop rollers
   pros::delay(50);
@@ -48,34 +49,42 @@ drive->setMaxVelocity(95);
   drive->setMaxVelocity(175);
   drive->moveDistanceAsync(-26_in);
   drive->waitUntilSettled();
-  pros::delay(150);
+  pros::delay(50);
 //turn
-  drive->turnAngleAsync(97_deg); // RED
+  drive->turnAngleAsync(188_deg); // RED
   drive->waitUntilSettled();
 //move forward to goal
-drive->setMaxVelocity(200);
-  drive->moveDistanceAsync(9_in);
+ drive->setMaxVelocity(175);
+  drive->moveDistanceAsync(22_in);
   drive->waitUntilSettled();
   roller_left.move(-200);
   roller_right.move(-200);
-  pros::delay(200);
+  pros::delay(150);
   roller_left.move(0);
   roller_right.move(0);
 //push up
   push.move(6000);
-  pros::delay(4000);
+  pros::delay(3500);
   push.move(0);
   pros::delay(100);
-//roll out and pull arms back
-  roller_left.move_velocity(-200);
+  roller_left.move_velocity(200); //roll out while going up
   roller_right.move_velocity(200);
-  arm_l.move_velocity(-127);
-  arm_r.move_velocity(-127);
-  pros::delay(800);
+  pros::delay(200);
+//roll out and pull arms back
+  roller_left.move_velocity(-180);
+  roller_right.move_velocity(-180);
+  arm_l.move_velocity(-117);
+  arm_r.move_velocity(-117);
+  pros::delay(600);
+  roller_left.move_velocity(200);
+  roller_right.move_velocity(200);
+  pros::delay(600);
+  drive->moveDistanceAsync(-6_in);
+  pros::delay(100);
   roller_left.move(0);
   roller_right.move(0);
   arm_r.move(0);
   arm_l.move(0);
 //move back
-  drive->moveDistance(-10_in);
+  drive->moveDistance(-15_in);
 }

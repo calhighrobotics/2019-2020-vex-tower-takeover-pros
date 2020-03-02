@@ -4,13 +4,13 @@
 void initialize() {
   pros::delay(20);
   pros::lcd::initialize();
-  pros::lcd::set_text(0, "TEAM 1516B TEAM 1516B TEAM 1516B");
-  pros::lcd::set_text(1, "TEAM 1516B TEAM 1516B TEAM 1516B");
-  pros::lcd::set_text(2, "TEAM 1516B TEAM 1516B TEAM 1516B");
-  pros::lcd::set_text(3, "TEAM 1516B TEAM 1516B TEAM 1516B");
-  pros::lcd::set_text(4, "TEAM 1516B TEAM 1516B TEAM 1516B");
-  pros::lcd::set_text(5, "TEAM 1516B TEAM 1516B TEAM 1516B");
-  pros::lcd::set_text(6, "TEAM 1516B TEAM 1516B TEAM 1516B");
+  pros::lcd::set_text(0, "Good Show Beta");
+  pros::lcd::set_text(1, "Good Show Beta");
+  pros::lcd::set_text(2, "Good Show Beta");
+  pros::lcd::set_text(3, "Good Show Beta");
+  pros::lcd::set_text(4, "Good Show Beta");
+  pros::lcd::set_text(5, "Good Show Beta");
+  pros::lcd::set_text(6, "Good Show Beta");
 }
 
 void disabled() {}
