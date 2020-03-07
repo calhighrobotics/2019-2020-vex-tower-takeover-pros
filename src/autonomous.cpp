@@ -15,12 +15,12 @@ every time; call with this position as a param.
   auto drive = ChassisControllerBuilder()
                    .withMotors(L_DR, R_DR)
                    // Green gearset, 4 in wheel diam, 15.9375 in wheel base
-                   .withDimensions(AbstractMotor::gearset::green, {{4_in, 15.9375_in}, imev5GreenTPR})
+                   .withDimensions(AbstractMotor::gearset::red, {{4_in, 15_in}, imev5RedTPR})
                    .build();
 
-  push.move_voltage(MAX_MOTOR_VOLTAGE);
-  pros::delay(425);
-  push.move_voltage(0);
+  // push.move_voltage(MAX_MOTOR_VOLTAGE);
+  // pros::delay(425);
+  // push.move_voltage(0);
   //bring out arms
   arm_l.move(127);
   arm_r.move(127);
@@ -32,44 +32,48 @@ every time; call with this position as a param.
   roller_right.move(127);
   //moving
   drive->setMaxVelocity(100);
-  drive->moveDistanceAsync(60_in);
+  drive->moveDistance(8_in);
   drive->waitUntilSettled();
+  // drive->moveDistance(-1_in);
+  // drive->waitUntilSettled();
+  drive->turnAngle(-72_deg);
+  drive->waitUntilSettled();
+  drive->moveDistance(20_in);
+  drive->waitUntilSettled();
+  // drive->turnAngle(180_deg);
+  // drive->waitUntilSettled();
+  // drive->moveDistance(48_in);
+  // drive->turnAngle(45_deg);
+  pros::delay(3000); //delete
   //stop rollers
   roller_left.move(0);
   roller_right.move(0);
-  //move back and speed up
-  drive->setMaxVelocity(175);
-  drive->moveDistanceAsync(-26_in);
-  drive->waitUntilSettled();
-  pros::delay(150);
-  //turn
-  drive->turnAngleAsync(-190_deg);
-  drive->waitUntilSettled();
-  //move forward to goal
-  drive->setMaxVelocity(200);
-  dr_l.move_voltage(MAX_MOTOR_VOLTAGE);
-  dr_r.move_voltage(MAX_MOTOR_VOLTAGE);
-  pros::delay(1100);
-  dr_l.move(0);
-  dr_r.move(0);
-  drive->waitUntilSettled();
-  //push up
-  push.move(6000);
-  pros::delay(4000);
-  push.move(0);
-  pros::delay(100);
-  roller_left.move(-200);
-  roller_right.move(-200);
-  pros::delay(100);
-  roller_left.move(0);
-  roller_right.move(0);
-  //roll out
-  roller_left.move_velocity(-200);
-  roller_right.move_velocity(-200);
-  drive->setMaxVelocity(100);
-  //move back
-  drive->moveDistanceAsync(-10_in);
-  pros::delay(1200);
-  roller_left.move(0);
-  roller_right.move(0);
+
+  // //move forward to goal
+  // dr_l.move_voltage(MAX_MOTOR_VOLTAGE);
+  // dr_r.move_voltage(MAX_MOTOR_VOLTAGE);
+  // pros::delay(1100);
+  // dr_l.move(0);
+  // dr_r.move(0);
+  // drive->waitUntilSettled();
+  // //push up
+  // push.move(6000);
+  // pros::delay(4000);
+  // push.move(0);
+  // pros::delay(100);
+  // roller_left.move(-200);
+  // roller_right.move(-200);
+  // pros::delay(100);
+  // roller_left.move(0);
+  // roller_right.move(0);
+  // //roll out
+  // roller_left.move_velocity(-200);
+  // roller_right.move_velocity(-200);
+  // drive->setMaxVelocity(100);
+  // //move back
+  // drive->moveDistanceAsync(-10_in);
+  // pros::delay(1200);
+  // roller_left.move(0);
+  // roller_right.move(0);
+  
 }
