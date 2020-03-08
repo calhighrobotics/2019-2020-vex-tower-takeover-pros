@@ -14,10 +14,9 @@ every time; call with this position as a param.
   //local declaration of drive train
   auto drive = ChassisControllerBuilder()
                    .withMotors(L_DR, R_DR)
-                   // Green gearset, 4 in wheel diam, 15.9375 in wheel base
-                   .withDimensions(AbstractMotor::gearset::red, {{4_in, 15_in}, imev5RedTPR})
+                   // Green gearset, 4 in wheel diam, 13.5 in wheel base
+                   .withDimensions(AbstractMotor::gearset::red, {{4_in, 13.5_in}, imev5RedTPR})
                    .build();
-
   // push.move_voltage(MAX_MOTOR_VOLTAGE);
   // pros::delay(425);
   // push.move_voltage(0);
@@ -33,12 +32,18 @@ every time; call with this position as a param.
   //moving
   drive->setMaxVelocity(100);
   drive->moveDistance(8_in);
+  drive->turnAngleAsync(-80_deg);
   drive->waitUntilSettled();
-  // drive->moveDistance(-1_in);
-  // drive->waitUntilSettled();
-  drive->turnAngle(-72_deg);
+  drive->moveDistance(22_in);
   drive->waitUntilSettled();
-  drive->moveDistance(20_in);
+  drive->turnAngle(-45_deg);
+  drive->waitUntilSettled();
+  drive->moveDistance(5_in);
+  drive->waitUntilSettled();
+  pros::delay(100);
+  drive->moveDistance(-5_in);
+  drive->waitUntilSettled();
+  drive->turnAngle(200_deg);
   drive->waitUntilSettled();
   // drive->turnAngle(180_deg);
   // drive->waitUntilSettled();
@@ -48,7 +53,6 @@ every time; call with this position as a param.
   //stop rollers
   roller_left.move(0);
   roller_right.move(0);
-
   // //move forward to goal
   // dr_l.move_voltage(MAX_MOTOR_VOLTAGE);
   // dr_r.move_voltage(MAX_MOTOR_VOLTAGE);
@@ -75,5 +79,4 @@ every time; call with this position as a param.
   // pros::delay(1200);
   // roller_left.move(0);
   // roller_right.move(0);
-  
 }
