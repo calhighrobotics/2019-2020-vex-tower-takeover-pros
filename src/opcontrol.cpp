@@ -59,6 +59,11 @@ void opcontrol()
       roller_left.move((3 * -MAX_MOTOR_POWER) / 4);
       roller_right.move((3 * -MAX_MOTOR_POWER) / 4);
     }
+    else if (master.get_digital(DIGITAL_X)){
+      // spin in
+      roller_left.move((3*MAX_MOTOR_POWER) / 5);
+      roller_right.move((3*MAX_MOTOR_POWER) / 5);
+    }
     else if (master.get_digital(DIGITAL_Y))
     { // spin out
       roller_left.move((9 * -MAX_MOTOR_POWER) / 16);
